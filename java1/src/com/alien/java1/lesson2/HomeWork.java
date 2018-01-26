@@ -7,7 +7,8 @@ public class HomeWork {
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-	 task1();
+	 //task1();
+	 task2();
     }
 
     // ===== task1
@@ -62,4 +63,19 @@ public class HomeWork {
     }
     
     // ===== task2
+    private static void task2(){
+        int[] array = new int[8];
+        System.out.println("Заполнение массива значениями с заданным шагом");
+        System.out.print("Укажите начальное значение: ");
+        int arrayStart = scanner.nextInt();
+        System.out.print("Укажите шаг: ");
+        int arrayStep = scanner.nextInt();
+        System.out.println("Полученный массив: ");
+        for (int i = 0; i < array.length; i++) {
+            array[i] = arrayStart + (i * arrayStep);
+            System.out.print(array[i] + " ");
+        }
+    }
+
+    // =====task3
 }
