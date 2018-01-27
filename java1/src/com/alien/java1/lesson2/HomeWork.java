@@ -10,7 +10,8 @@ public class HomeWork {
     public static void main(String[] args) {
 	 //task1();
 	 //task2();
-        task3();
+        //task3();
+        task4();
     }
 
     // ===== task1
@@ -94,7 +95,6 @@ public class HomeWork {
                 default:
         }
     }
-
     private static String printArray2(int[] array, boolean original){
         String result = "";
         for (int i = 0; i < array.length; i++) {
@@ -114,4 +114,37 @@ public class HomeWork {
         return result;
     }
     // ===== task4
+    private static void task4(){
+        System.out.println("Создание квадратной матрицы и замена диагоналей на 1");
+        System.out.print("Введите размер массива:");
+        int arraySize = scanner.nextInt();
+        int[][] array = new int[arraySize][arraySize];
+
+        for (int i = 0; i < arraySize; i++){
+            for (int j = 0; j < arraySize; j++){
+                array[i][j] = rnd.nextInt(10);
+            }
+        }
+        System.out.println("Исходный массив:");
+        printArray3(array, arraySize, true);
+        System.out.println("Новый массив:");
+        printArray3(array, arraySize, false);
+    }
+    private static void printArray3(int[][] array, int arraySize, boolean original){
+        for (int i = 0; i < arraySize; i++){
+            for (int j = 0; j < arraySize; j++){
+                if (original)
+                    System.out.print(array[i][j] + " ");
+                else {
+                    if ((i == j) || (i + j == arraySize - 1))
+                        System.out.print("1 ");
+                    else
+                        System.out.print(array[i][j] + " ");
+                }
+            }
+            System.out.println("");
+        }
+    }
+
+    // ===== task5
 }
