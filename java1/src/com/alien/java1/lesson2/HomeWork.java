@@ -177,6 +177,28 @@ public class HomeWork {
 
     // ===== task6
     private static void task6(){
+        System.out.println("Зададим массив и проверим есть ли место, в котором сумма левой и правой части массива равны");
+        System.out.print("Введите длину массива: ");
+        int arraySize = scanner.nextInt();
+
+        int[] array = new int[arraySize];
+        int arraySum = 0, leftSum = 0, rightSum = 0;
+
+        for (int i = 0; i < array.length; i++) {
+            array[i] = rnd.nextInt(10);
+            arraySum += array[i];
+        }
+
+        for (int i = 0; i < array.length; i++) {
+            if (leftSum == arraySum / 2) {
+                rightSum += array[i];
+            }
+            else {
+                leftSum += array[i];
+            }
+        }
+
+        System.out.println(arraySum + " " + rightSum + " " + leftSum);
 
     }
 
