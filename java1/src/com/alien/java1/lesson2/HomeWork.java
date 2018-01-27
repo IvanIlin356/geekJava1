@@ -182,13 +182,14 @@ public class HomeWork {
         int arraySize = scanner.nextInt();
 
         int[] array = new int[arraySize];
+        //int[] array = {10,5,3,2};
         int arraySum = 0, leftSum = 0, rightSum = 0;
 
         for (int i = 0; i < array.length; i++) {
             array[i] = rnd.nextInt(10);
             arraySum += array[i];
         }
-
+        System.out.println("Массив: ");
         for (int i = 0; i < array.length; i++) {
             if (leftSum == arraySum / 2) {
                 rightSum += array[i];
@@ -196,10 +197,13 @@ public class HomeWork {
             else {
                 leftSum += array[i];
             }
+            System.out.print(array[i] + " ");
         }
-
-        System.out.println(arraySum + " " + rightSum + " " + leftSum);
-
+        System.out.println("");
+        if (leftSum == rightSum)
+            System.out.println("Место, в котором сумма левой и правой части массива равны ЕСТЬ, сумма = " + arraySum / 2);
+        else
+            System.out.println("Места, в котором сумма левой и правой части массива равны НЕТУ");
     }
 
     // ===== task7
