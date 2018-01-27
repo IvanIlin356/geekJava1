@@ -10,8 +10,11 @@ public class HomeWork {
     public static void main(String[] args) {
 	 //task1();
 	 //task2();
-        //task3();
-        task4();
+     //task3();
+     //task4();
+     //task5();
+     task6();
+     //task7();
     }
 
     // ===== task1
@@ -113,6 +116,7 @@ public class HomeWork {
         }
         return result;
     }
+
     // ===== task4
     private static void task4(){
         System.out.println("Создание квадратной матрицы и замена диагоналей на 1");
@@ -147,4 +151,34 @@ public class HomeWork {
     }
 
     // ===== task5
+    private static void task5(){
+        final int MAX_VALUE = 100;
+        System.out.println("Зададим массив и найдем Min и Max");
+        System.out.print("Введите длину массива: ");
+        int arraySize = scanner.nextInt();
+
+        int[] array = new int[arraySize];
+
+        for (int i = 0; i < array.length; i++) {
+            array[i] = rnd.nextInt(MAX_VALUE);
+        }
+
+        int max = 0, min = MAX_VALUE;
+
+        System.out.println("Массив: ");
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] >= max) max = array[i];
+            if (array[i] <= min) min = array[i];
+            System.out.print(array[i] + " ");
+        }
+        System.out.println("");
+        System.out.println("Min = " + min + ", Max = " + max);
+    }
+
+    // ===== task6
+    private static void task6(){
+
+    }
+
+    // ===== task7
 }
