@@ -207,4 +207,23 @@ public class HomeWork {
     }
 
     // ===== task7
+    private static void task7(){
+        System.out.println("Сместим элементы массива на n позиций");
+        System.out.print("Введите размер массива: ");
+        int arraySize = scanner.nextInt();
+        System.out.print("Введите размер смещения: ");
+        int step = scanner.nextInt();
+        int[] array = new int[arraySize];
+
+        for (int i = 0; i < arraySize; i++){
+            array[i] = rnd.nextInt(10);
+        }
+
+        int curCell = 0, newCell = 0, buff1, buff2 = 0;
+        for (int i = 0; i < arraySize; i++){
+            newCell += curCell + step;
+
+        }
+
+    }
 }
