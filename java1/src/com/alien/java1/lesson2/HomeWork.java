@@ -8,13 +8,39 @@ public class HomeWork {
     private static Random rnd = new Random();
 
     public static void main(String[] args) {
-	 //task1();
-	 //task2();
-     //task3();
-     //task4();
-     //task5();
-     task6();
-     //task7();
+        boolean inProgr = true;
+        while (inProgr) {
+            System.out.println("");
+            System.out.println("     ==========     ");
+            System.out.println("");
+            System.out.println("Введите номер задания 1 - 7");
+            System.out.println("Введите любое другое число для завершения");
+            switch (scanner.nextInt()) {
+                case 1:
+                    task1();
+                    break;
+                case 2:
+                    task2();
+                    break;
+                case 3:
+                    task3();
+                    break;
+                case 4:
+                    task4();
+                    break;
+                case 5:
+                    task5();
+                    break;
+                case 6:
+                    task6();
+                    break;
+                case 7:
+                    task7();
+                    break;
+                    default:
+                        inProgr = false;
+            }
+        }
     }
 
     // ===== task1
@@ -209,20 +235,85 @@ public class HomeWork {
     // ===== task7
     private static void task7(){
         System.out.println("Сместим элементы массива на n позиций");
+        System.out.println("Программа работает не всегда нестабильно в случае четного размера массива и шага");
+
         System.out.print("Введите размер массива: ");
         int arraySize = scanner.nextInt();
         System.out.print("Введите размер смещения: ");
         int step = scanner.nextInt();
+        if (step > arraySize) step = step % arraySize;
+
         int[] array = new int[arraySize];
 
+        System.out.println("Исходный массив:");
         for (int i = 0; i < arraySize; i++){
             array[i] = rnd.nextInt(10);
+            System.out.print(array[i] + " ");
+        }
+        System.out.println("");
+
+        int curCell = 0, newCell = 0, buff1 = 0, buff2 = 0, buff3 = 0;
+        boolean buff = true;
+        boolean strangeCondition = ((arraySize % 2 == 0) && (step % 2 == 0));
+
+        for (int i = 1; i <= arraySize; i++){
+            if ((curCell == arraySize - step)){
+                buff3 = (buff ? buff1 : buff2);
+                //System.out.println(curCell + " " + buff3);
+            }
+            if (step < 0) step = arraySize - Math.abs(step);
+            newCell = curCell + step;
+            if (strangeCondition) {
+                if (newCell > arraySize) newCell -= arraySize;
+                if (newCell == arraySize) newCell -= arraySize - 1;
+                //if (newCell < 0) newCell += arraySize - 1;
+                //if (newCell == 0) newCell += arraySize - 2;
+            }
+            else {
+                if (newCell >= arraySize) newCell -= arraySize;
+                if (newCell < 0) newCell += arraySize;
+            }
+
+            if (i == 1) buff1 = array[curCell];
+
+            if (buff) {
+                buff2 = array[newCell];
+            }
+            else {
+                buff1 = array[newCell];
+            }
+
+            array[newCell] = (buff ? buff1 : buff2);
+
+            if (buff) {
+                buff1 = array[curCell];
+            }
+            else {
+                buff2 = array[curCell];
+            }
+
+            buff = !buff;
+            curCell = newCell;
         }
 
-        int curCell = 0, newCell = 0, buff1, buff2 = 0;
-        for (int i = 0; i < arraySize; i++){
-            newCell += curCell + step;
 
+        if (strangeCondition) {
+            if (step >= 0) array[0] = buff3;
+            if (step < 0) {
+                // привет, костыли!
+                buff1 = array[arraySize-3];
+                buff2 = array[arraySize-2];
+                buff3 = array[arraySize-1];
+
+                array[arraySize-3] = buff3;
+                array[arraySize-2] = buff1;
+                array[arraySize-1] = buff2;
+            }
+        }
+
+        System.out.println("Новый массив:");
+        for (int i = 0; i < arraySize; i++){
+            System.out.print(array[i] + " ");
         }
 
     }
