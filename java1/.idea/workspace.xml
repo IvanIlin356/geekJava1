@@ -15,8 +15,8 @@
       <file leaf-file-name="HomeWork.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/alien/java1/lesson2/HomeWork.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="76" column="31" lean-forward="false" selection-start-line="76" selection-start-column="31" selection-end-line="76" selection-end-column="31" />
+            <state relative-caret-position="476">
+              <caret line="117" column="0" lean-forward="true" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#task1#0;class#HomeWork#0" expanded="false" />
@@ -45,7 +45,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="260" />
     <option name="y" value="80" />
     <option name="width" value="1400" />
@@ -169,7 +169,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1066" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -228,8 +228,39 @@
     <entry file="file://$PROJECT_DIR$/src/com/alien/java1/lesson3/Main.java" />
     <entry file="file://$PROJECT_DIR$/src/com/alien/java1/lesson2/HomeWork.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="76" column="31" lean-forward="false" selection-start-line="76" selection-start-column="31" selection-end-line="76" selection-end-column="31" />
+        <state relative-caret-position="408">
+          <caret line="96" column="0" lean-forward="true" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#task1#0;class#HomeWork#0" expanded="false" />
+            <element signature="method#printArray#0;class#HomeWork#0" expanded="false" />
+            <element signature="method#task2#0;class#HomeWork#0" expanded="false" />
+            <element signature="method#task3#0;class#HomeWork#0" expanded="false" />
+            <element signature="method#printArray2#0;class#HomeWork#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/alien/java1/lesson2/HomeWork.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#task1#0;class#HomeWork#0" expanded="false" />
+            <element signature="method#printArray#0;class#HomeWork#0" expanded="false" />
+            <element signature="method#task2#0;class#HomeWork#0" expanded="false" />
+            <element signature="method#task3#0;class#HomeWork#0" expanded="false" />
+            <element signature="method#printArray2#0;class#HomeWork#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/alien/java1/lesson3/Main.java" />
+    <entry file="file://$PROJECT_DIR$/src/com/alien/java1/lesson2/HomeWork.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="117" column="0" lean-forward="true" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#task1#0;class#HomeWork#0" expanded="false" />
