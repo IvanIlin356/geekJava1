@@ -10,7 +10,11 @@ public class HomeWork {
     public static void main(String[] args) {
 	 //task1();
 	 //task2();
-        task3();
+     //task3();
+     //task4();
+     //task5();
+     task6();
+     //task7();
     }
 
     // ===== task1
@@ -94,7 +98,6 @@ public class HomeWork {
                 default:
         }
     }
-
     private static String printArray2(int[] array, boolean original){
         String result = "";
         for (int i = 0; i < array.length; i++) {
@@ -113,5 +116,114 @@ public class HomeWork {
         }
         return result;
     }
+
     // ===== task4
+    private static void task4(){
+        System.out.println("Создание квадратной матрицы и замена диагоналей на 1");
+        System.out.print("Введите размер массива:");
+        int arraySize = scanner.nextInt();
+        int[][] array = new int[arraySize][arraySize];
+
+        for (int i = 0; i < arraySize; i++){
+            for (int j = 0; j < arraySize; j++){
+                array[i][j] = rnd.nextInt(10);
+            }
+        }
+        System.out.println("Исходный массив:");
+        printArray3(array, arraySize, true);
+        System.out.println("Новый массив:");
+        printArray3(array, arraySize, false);
+    }
+    private static void printArray3(int[][] array, int arraySize, boolean original){
+        for (int i = 0; i < arraySize; i++){
+            for (int j = 0; j < arraySize; j++){
+                if (original)
+                    System.out.print(array[i][j] + " ");
+                else {
+                    if ((i == j) || (i + j == arraySize - 1))
+                        System.out.print("1 ");
+                    else
+                        System.out.print(array[i][j] + " ");
+                }
+            }
+            System.out.println("");
+        }
+    }
+
+    // ===== task5
+    private static void task5(){
+        final int MAX_VALUE = 100;
+        System.out.println("Зададим массив и найдем Min и Max");
+        System.out.print("Введите длину массива: ");
+        int arraySize = scanner.nextInt();
+
+        int[] array = new int[arraySize];
+
+        for (int i = 0; i < array.length; i++) {
+            array[i] = rnd.nextInt(MAX_VALUE);
+        }
+
+        int max = 0, min = MAX_VALUE;
+
+        System.out.println("Массив: ");
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] >= max) max = array[i];
+            if (array[i] <= min) min = array[i];
+            System.out.print(array[i] + " ");
+        }
+        System.out.println("");
+        System.out.println("Min = " + min + ", Max = " + max);
+    }
+
+    // ===== task6
+    private static void task6(){
+        System.out.println("Зададим массив и проверим есть ли место, в котором сумма левой и правой части массива равны");
+        System.out.print("Введите длину массива: ");
+        int arraySize = scanner.nextInt();
+
+        int[] array = new int[arraySize];
+        //int[] array = {10,5,3,2};
+        int arraySum = 0, leftSum = 0, rightSum = 0;
+
+        for (int i = 0; i < array.length; i++) {
+            array[i] = rnd.nextInt(10);
+            arraySum += array[i];
+        }
+        System.out.println("Массив: ");
+        for (int i = 0; i < array.length; i++) {
+            if (leftSum == arraySum / 2) {
+                rightSum += array[i];
+            }
+            else {
+                leftSum += array[i];
+            }
+            System.out.print(array[i] + " ");
+        }
+        System.out.println("");
+        if (leftSum == rightSum)
+            System.out.println("Место, в котором сумма левой и правой части массива равны ЕСТЬ, сумма = " + arraySum / 2);
+        else
+            System.out.println("Места, в котором сумма левой и правой части массива равны НЕТУ");
+    }
+
+    // ===== task7
+    private static void task7(){
+        System.out.println("Сместим элементы массива на n позиций");
+        System.out.print("Введите размер массива: ");
+        int arraySize = scanner.nextInt();
+        System.out.print("Введите размер смещения: ");
+        int step = scanner.nextInt();
+        int[] array = new int[arraySize];
+
+        for (int i = 0; i < arraySize; i++){
+            array[i] = rnd.nextInt(10);
+        }
+
+        int curCell = 0, newCell = 0, buff1, buff2 = 0;
+        for (int i = 0; i < arraySize; i++){
+            newCell += curCell + step;
+
+        }
+
+    }
 }
