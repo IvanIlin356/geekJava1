@@ -35,7 +35,7 @@ public class HomeWork {
                     task6();
                     break;
                 case 7:
-                    task7();
+                    task7_2();
                     break;
                     default:
                         inProgr = false;
@@ -309,6 +309,52 @@ public class HomeWork {
                 array[arraySize-2] = buff1;
                 array[arraySize-1] = buff2;
             }
+        }
+
+        System.out.println("Новый массив:");
+        for (int i = 0; i < arraySize; i++){
+            System.out.print(array[i] + " ");
+        }
+
+    }
+
+    private static void task7_2(){
+        System.out.println("Сместим элементы массива на n позиций");
+
+        System.out.print("Введите размер массива: ");
+        int arraySize = scanner.nextInt();
+        System.out.print("Введите размер смещения: ");
+        int step = scanner.nextInt();
+        if (step > arraySize) step = step % arraySize;
+
+        int[] array = new int[arraySize];
+        boolean inProgr = true;
+
+        System.out.println("Исходный массив:");
+        for (int i = 0; i < arraySize; i++){
+            array[i] = rnd.nextInt(10);
+            System.out.print(array[i] + " ");
+        }
+
+        System.out.println("");
+
+        int curCell = 0, bufCell = 0, buff1 = 0;
+
+        if (step < 0) step = arraySize - Math.abs(step);
+        if (step == 0) {
+            inProgr = false;
+        }
+
+        curCell = step;
+        bufCell = curCell - 1;
+
+        while (inProgr) {
+            buff1 = array[curCell];
+            array[curCell] = array[bufCell];
+            array[bufCell] = buff1;
+            curCell++;
+            if (curCell > arraySize - 1) curCell = 0;
+            if (curCell == bufCell) inProgr = false;
         }
 
         System.out.println("Новый массив:");
