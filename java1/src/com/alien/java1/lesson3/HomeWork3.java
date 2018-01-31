@@ -1,6 +1,5 @@
 package com.alien.java1.lesson3;
 
-import javax.sound.midi.Soundbank;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -19,10 +18,10 @@ public class HomeWork3 {
             System.out.println("Введите любое другое число для завершения");
             switch (scanner.nextInt()) {
                 case 1:
-                    guessTheNumber();
+                    playTheGame(1);
                     break;
                 case 2:
-                    //task2();
+                    playTheGame(2);
                     break;
                     default:
                         inProgr = false;
@@ -30,14 +29,57 @@ public class HomeWork3 {
         }
     }
 
-    private static void guessTheNumber() {
+    private static void playTheGame(int gameType) {
         boolean inGame = true;
         do {
-            numberGame();
+            switch (gameType){
+                case 1:
+                    numberGame();
+                    break;
+                case 2:
+                    wordGame();
+                    break;
+            }
             System.out.println("Хотите сыграть еще раз? 1 - Да, 0 - Нет");
             if (scanner.nextInt() == 0)
                 inGame = false;
 
+        } while (inGame);
+    }
+
+    private static void wordGame() {
+        String[] words = {"apple", "orange", "lemon", "banana", "apricot", "avocado", "broccoli",
+                "carrot", "cherry", "garlic", "grape", "melon", "leak", "kiwi", "mango", "mushroom",
+                "nut", "olive", "pea", "peanut", "pear", "pepper", "pineapple", "pumpkin", "potato"};
+        String tryWord = "", answer;
+
+        boolean inGame = true;
+        System.out.println("Угадай загаданное слово!");
+        String mysteryWorld = words[rnd.nextInt(words.length)];
+        do {
+            answer = "";
+            System.out.println("");
+            System.out.print("Введи слово:");
+            tryWord = scanner.next().toLowerCase();
+
+            if (tryWord.equals(mysteryWorld)){
+                System.out.println("Вы выиграли! Победа!");
+                inGame = false;
+            }
+            else {
+                for (int i = 0; i < 15; i++) {
+
+                    if (i < mysteryWorld.length() && i < tryWord.length()) {
+                        if (mysteryWorld.charAt(i) == tryWord.charAt(i))
+                            answer += tryWord.charAt(i);
+                        else
+                            answer += "#";
+                    } else
+                        answer += "#";
+                }
+                System.out.println("Результат:");
+                System.out.println(answer);
+            }
         } while (inGame);
     }
 
