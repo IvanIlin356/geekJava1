@@ -53,9 +53,16 @@ public class HomeWork4 {
 
     private static void printField(){
         System.out.println("Игровое поле:");
-        for (char[] aField : field) {
+        System.out.print("  ");
+        for (int i = 0; i < field.length; i++){
+            System.out.print((i + 1) + " ");
+        }
+        System.out.println();
+
+        for (int i = 0; i < field.length; i++) {
+            System.out.print((i + 1) + " ");
             for (int j = 0; j < field.length; j++){
-                    System.out.print(aField[j] + " ");
+                    System.out.print(field[i][j] + " ");
                 }
             System.out.println();
         }
@@ -123,44 +130,56 @@ public class HomeWork4 {
                     inRowV = 0;
                 }
             }
-        }
-        for (int i = 0; i < field.length;i++){
-            if (fieldSize - i >= rowToWin){
-                int j = 0;
-                while (j + i < fieldSize){
-                    // check left diag \
-                    // up 1
-                    if (field[j][j + i] == dot){
-                        inDiagL1++;
-                        if (inDiagL1 == rowToWin) return true;
-                    }
-                    else {
-                        inDiagL1 = 0;
-                    }
 
-                    //down 2
-                    if (field[j + i][j] == dot){
-                        inDiagL2++;
-                        if (inDiagL2 == rowToWin) return true;
-                    }
-                    else {
-                        inDiagL2 = 0;
-                    }
-
-                    // check right diag /
-                    // up 1
-                    if (field[j][fieldSize - 1 - j] == dot) {
-                        inDiagR1++;
-                        if (inDiagR1 == rowToWin) return true;
-                    }
-                    else {
-                        inDiagR1 = 0;
-                    }
-
-                    j++;
+            int j = 0;
+            while (j + i < fieldSize){
+                // check left diag \
+                // up 1
+                if (field[j][j + i] == dot){
+                    inDiagL1++;
+                    if (inDiagL1 == rowToWin) return true;
                 }
+                else {
+                    inDiagL1 = 0;
+                }
+
+                //down 2
+                if (field[j + i][j] == dot){
+                    inDiagL2++;
+                    if (inDiagL2 == rowToWin) return true;
+                }
+                else {
+                    inDiagL2 = 0;
+                }
+
+                // check right diag /
+                // up 1
+                if (field[j][fieldSize - 1 - j - i] == dot) {
+                    inDiagR1++;
+                    if (inDiagR1 == rowToWin) return true;
+                }
+                else {
+                    inDiagR1 = 0;
+                }
+
+                //down2
+                if ((j + i < fieldSize - 1) && (field[j + i + 1][fieldSize - 1 - j] == dot)) {
+                    inDiagR2++;
+                    if (inDiagR2 == rowToWin) return true;
+                }
+                else {
+                    inDiagR2 = 0;
+                }
+
+                j++;
             }
+
         }
+//        for (int i = 0; i < field.length;i++){
+//            //if (fieldSize - i >= rowToWin){
+//
+//            //}
+//        }
         return isWin;
     }
 
