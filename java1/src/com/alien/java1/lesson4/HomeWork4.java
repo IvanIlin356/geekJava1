@@ -11,11 +11,16 @@ public class HomeWork4 {
     private static final char DOT_EMPTY = '.';  // 0
     private static final char DOT_X = 'X'; // 1
     private static final char DOT_O = 'O'; // 2
+    private static final int X_WEIGHT = 10;
+
+
+
     private static boolean isUserFirst;
     private static char[][] field;
     private static short fieldSize, rowToWin;
     private static int row, col;
     private static Map<Character, String> names = new HashMap<>();
+    private static int[][] fieldWeight;
 
     public static void main(String[] args) {
         boolean inGame = true;
@@ -40,11 +45,57 @@ public class HomeWork4 {
         do {
             playerTurn();
             printField();
+            computerTurn();
             System.out.println(checkForWin(DOT_X));
         }while (!checkForWin(DOT_X));
 
         printField();
 
+    }
+
+    private static void computerTurn() {
+        getFieldWeight();
+        printFieldWeight();
+    }
+
+    private static void getFieldWeight() {
+        int iPrev = -1, jPrev = -1;
+        int iNext = -1, jNext = -1;
+        int inRow = 0;
+
+        clearFieldWeight();
+
+        for (int i = 0; i < fieldWeight.length; i ++){
+            for (int j = 0; j < fieldWeight.length; j ++) {
+                switch (field[i][j]){
+                    case DOT_EMPTY:
+                        fieldWeight[i][j] += 1;
+                        if (inRow > 0) {
+                            if (iPrev != -1 && jPrev != -1) fieldWeight[iPrev][jPrev] += inRow * X_WEIGHT;
+                            if (iNext != -1 && jNext != -1) fieldWeight[iNext][jNext] += inRow * X_WEIGHT;
+                            iPrev = iNext = jPrev = jNext = -1;
+                            inRow = 0;
+                        }
+                        break;
+                    case DOT_X:
+                        if (iPrev == -1) iPrev = i;
+                        if (jPrev == -1) jPrev = (j > 0 ? (j - 1) : -1);
+                        inRow++;
+                        iNext = i;
+                        jNext = (j < fieldSize - 1) ? (j + 1) : -1;
+                        break;
+                }
+            }
+        }
+    }
+
+    private static void printFieldWeight(){
+        for (int i = 0; i < fieldWeight.length; i++) {
+            for (int j = 0; j < fieldWeight.length; j++){
+                System.out.print(fieldWeight[i][j] + " ");
+            }
+            System.out.println();
+        }
     }
 
     private static boolean whosFirst() {
@@ -80,6 +131,8 @@ public class HomeWork4 {
             rowToWin = fieldSize;
             System.out.println("Длина ряда для победы приравнена размеру поля");
         }
+
+        fieldWeight = new int[fieldSize][fieldSize];
 
         isUserFirst = whosFirst();
         System.out.println();
@@ -197,5 +250,13 @@ public class HomeWork4 {
         return (row >= 0 && row < fieldSize) &&
                 (col >= 0 && col < fieldSize) &&
                 field[row][col] == DOT_EMPTY;
+    }
+
+    private static void clearFieldWeight(){
+        for (int i = 0; i < fieldWeight.length; i ++){
+            for (int j = 0; j < fieldWeight.length; j ++){
+                fieldWeight[i][j] = 0;
+            }
+        }
     }
 }
