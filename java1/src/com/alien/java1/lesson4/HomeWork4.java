@@ -46,53 +46,126 @@ public class HomeWork4 {
             playerTurn();
             printField();
             computerTurn();
-            System.out.println(checkForWin(DOT_X));
-        }while (!checkForWin(DOT_X));
+        } while (!checkForWin(DOT_X));
 
         printField();
 
     }
 
     private static void computerTurn() {
-        getFieldWeight();
+        getFieldWeight(DOT_X);
         printFieldWeight();
     }
 
-    private static void getFieldWeight() {
-        int iPrev = -1, jPrev = -1;
-        int iNext = -1, jNext = -1;
-        int inRow = 0;
+    private static void getFieldWeight(char dot) {
+        int jPrev2 = -1, jPrev = -1;
+        int jNext2 = -1, jNext = -1;
+        int inRowH = 0, inRowV = 0;
 
         clearFieldWeight();
 
         for (int i = 0; i < fieldWeight.length; i ++){
             for (int j = 0; j < fieldWeight.length; j ++) {
-                switch (field[i][j]){
-                    case DOT_EMPTY:
-                        fieldWeight[i][j] += 1;
-                        if (inRow > 0) {
-                            if (iPrev != -1 && jPrev != -1) fieldWeight[iPrev][jPrev] += inRow * X_WEIGHT;
-                            if (iNext != -1 && jNext != -1) fieldWeight[iNext][jNext] += inRow * X_WEIGHT;
-                            iPrev = iNext = jPrev = jNext = -1;
-                            inRow = 0;
-                        }
-                        break;
-                    case DOT_X:
-                        if (iPrev == -1) iPrev = i;
-                        if (jPrev == -1) jPrev = (j > 0 ? (j - 1) : -1);
-                        inRow++;
-                        iNext = i;
-                        jNext = (j < fieldSize - 1) ? (j + 1) : -1;
-                        break;
+                // check horizont <->
+                if (field[i][j] == DOT_EMPTY) {
+                    fieldWeight[i][j] += 1;
+                    if (inRowH > 0) {
+                        if (jPrev >= 0) fieldWeight[i][jPrev] += inRowH * X_WEIGHT;
+                        if (jNext >= 0) fieldWeight[i][jNext] += inRowH * X_WEIGHT;
+                        jPrev = jNext = -1;
+                        inRowH = 0;
+                    }
+                }
+                if (field[i][j] == dot) {
+                    if (jPrev == -1) jPrev = (j > 0 ? (j - 1) : -2);
+                    inRowH++;
+                    jNext = (j < fieldSize - 1) ? (j + 1) : -2;
+
+                }
+                if (j == fieldWeight.length - 1) {
+                    if (jPrev >= 0) fieldWeight[i][jPrev] += inRowH * X_WEIGHT;
+                    if (jNext >= 0) fieldWeight[i][jNext] += inRowH * X_WEIGHT;
+                }
+
+                // check vertical /\ - \/
+                if (field[j][i] == DOT_EMPTY) {
+                    fieldWeight[j][i] += 1;
+                    if (inRowV > 0) {
+                        if (jPrev2 >= 0) fieldWeight[jPrev2][i] += inRowV * X_WEIGHT;
+                        if (jNext2 >= 0) fieldWeight[jNext2][i] += inRowV * X_WEIGHT;
+                        jPrev2 = jNext2 = -1;
+                        inRowV = 0;
+                    }
+                }
+                if (field[j][i] == dot) {
+                    if (jPrev2 == -1) jPrev2 = (j > 0 ? (j - 1) : -2);
+                    inRowV++;
+                    jNext2 = (j < fieldSize - 1) ? (j + 1) : -2;
+                }
+
+                if (j == fieldWeight.length - 1){
+                    if (jPrev2 >= 0) fieldWeight[jPrev2][i] += inRowV * X_WEIGHT;
+                    if (jNext2 >= 0) fieldWeight[jNext2][i] += inRowV * X_WEIGHT;
                 }
             }
+            inRowV = 0;
+            jPrev2 = jNext2 = -1;
+            inRowH = 0;
+            jPrev = jNext = -1;
+
+
+
+//            int j = 0;
+//            while (j + i < fieldSize){
+//                // check left diag \
+//                // up 1
+//                if (field[j][j + i] == dot){
+//                    inDiagL1++;
+//                    if (inDiagL1 == rowToWin) return true;
+//                }
+//                else {
+//                    inDiagL1 = 0;
+//                }
+//
+//                //down 2
+//                if (field[j + i][j] == dot){
+//                    inDiagL2++;
+//                    if (inDiagL2 == rowToWin) return true;
+//                }
+//                else {
+//                    inDiagL2 = 0;
+//                }
+//
+//                // check right diag /
+//                // up 1
+//                if (field[j][fieldSize - 1 - j - i] == dot) {
+//                    inDiagR1++;
+//                    if (inDiagR1 == rowToWin) return true;
+//                }
+//                else {
+//                    inDiagR1 = 0;
+//                }
+//
+//                //down2
+//                if ((j + i < fieldSize - 1) && (field[j + i + 1][fieldSize - 1 - j] == dot)) {
+//                    inDiagR2++;
+//                    if (inDiagR2 == rowToWin) return true;
+//                }
+//                else {
+//                    inDiagR2 = 0;
+//                }
+//
+//                j++;
+//            }
+//            inDiagL1 = inDiagL2 = inDiagR1 = inDiagR2 = 0;
+
         }
     }
 
     private static void printFieldWeight(){
         for (int i = 0; i < fieldWeight.length; i++) {
             for (int j = 0; j < fieldWeight.length; j++){
-                System.out.print(fieldWeight[i][j] + " ");
+                System.out.print(fieldWeight[i][j] + "\t");
             }
             System.out.println();
         }
@@ -184,6 +257,8 @@ public class HomeWork4 {
                 }
             }
 
+            inRowH = inRowV = 0;
+
             int j = 0;
             while (j + i < fieldSize){
                 // check left diag \
@@ -226,6 +301,7 @@ public class HomeWork4 {
 
                 j++;
             }
+            inDiagL1 = inDiagL2 = inDiagR1 = inDiagR2 = 0;
 
         }
 //        for (int i = 0; i < field.length;i++){
