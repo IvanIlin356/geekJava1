@@ -119,68 +119,70 @@ public class HomeWork4 {
             while (j + i < fieldWeight.length){
                 // check left diag \
                 // up 1
-                if (field[j][j + i] == DOT_EMPTY){
-                    fieldWeight[j][j + i] += 1;
-                    if (inRowL1 > 0) {
-                        if (jPrevL1 >= 0 && iPrevL1 >= 0) fieldWeight[jPrevL1][iPrevL1] += inRowL1 * DOT_WEIGHT;
-                        if (jNextL1 >= 0 && iNextL1 >= 0) fieldWeight[jNextL1][iNextL1] += inRowL1 * DOT_WEIGHT;
-                        iPrevL1 = jPrevL1 = iNextL1 = jNextL1 = -1;
-                        inRowL1 = 0;
-                    }
-                }
-                if (field[j][j + i] == dot){
-                    if (jPrevL1 == -1) jPrevL1 = (j > 0 ? (j - 1) : -2);
-                    if (iPrevL1 == -1) iPrevL1 = (j + i > 0 ? (j + i - 1) : -2);
-                    inRowL1++;
-                    jNextL1 = (j < fieldSize - 1) ? (j + 1) : -2;
-                    iNextL1 = (j + i < fieldSize - 1) ? (j + i + 1) : -2;
-                }
-
-                //down 2
-                if (j + i != j) {
-                    if (field[j + i][j] == DOT_EMPTY) {
-                        fieldWeight[j + i][j] += 1;
-                        if (inRowL2 > 0) {
-                            if (jPrevL2 >= 0 && iPrevL2 >= 0) fieldWeight[jPrevL2][iPrevL2] += inRowL2 * DOT_WEIGHT;
-                            if (jNextL2 >= 0 && iNextL2 >= 0) fieldWeight[jNextL2][iNextL2] += inRowL2 * DOT_WEIGHT;
-                            iPrevL2 = jPrevL2 = iNextL2 = jNextL2 = -1;
-                            inRowL2 = 0;
-                        }
-                    }
-                    if (field[j + i][j] == dot) {
-                        if (jPrevL2 == -1) jPrevL2 = (j + i > 0 ? (j + i - 1) : -2);
-                        if (iPrevL2 == -1) iPrevL2 = (j > 0 ? (j - 1) : -2);
-                        inRowL2++;
-                        jNextL2 = (j + i < fieldSize - 1) ? (j + i + 1) : -2;
-                        iNextL2 = (j < fieldSize - 1) ? (j + 1) : -2;
-                    }
-                }
+//                if (field[j][j + i] == DOT_EMPTY){
+//                    fieldWeight[j][j + i] += 1;
+//                    if (inRowL1 > 0) {
+//                        if (jPrevL1 >= 0 && iPrevL1 >= 0) fieldWeight[jPrevL1][iPrevL1] += inRowL1 * DOT_WEIGHT;
+//                        if (jNextL1 >= 0 && iNextL1 >= 0) fieldWeight[jNextL1][iNextL1] += inRowL1 * DOT_WEIGHT;
+//                        iPrevL1 = jPrevL1 = iNextL1 = jNextL1 = -1;
+//                        inRowL1 = 0;
+//                    }
+//                }
+//                if (field[j][j + i] == dot){
+//                    if (jPrevL1 == -1) jPrevL1 = (j > 0 ? (j - 1) : -2);
+//                    if (iPrevL1 == -1) iPrevL1 = (j + i > 0 ? (j + i - 1) : -2);
+//                    inRowL1++;
+//                    jNextL1 = (j < fieldSize - 1) ? (j + 1) : -2;
+//                    iNextL1 = (j + i < fieldSize - 1) ? (j + i + 1) : -2;
+//                }
+//
+//                //down 2
+//                if (j + i != j) {
+//                    if (field[j + i][j] == DOT_EMPTY) {
+//                        fieldWeight[j + i][j] += 1;
+//                        if (inRowL2 > 0) {
+//                            if (jPrevL2 >= 0 && iPrevL2 >= 0) fieldWeight[jPrevL2][iPrevL2] += inRowL2 * DOT_WEIGHT;
+//                            if (jNextL2 >= 0 && iNextL2 >= 0) fieldWeight[jNextL2][iNextL2] += inRowL2 * DOT_WEIGHT;
+//                            iPrevL2 = jPrevL2 = iNextL2 = jNextL2 = -1;
+//                            inRowL2 = 0;
+//                        }
+//                    }
+//                    if (field[j + i][j] == dot) {
+//                        if (jPrevL2 == -1) jPrevL2 = (j + i > 0 ? (j + i - 1) : -2);
+//                        if (iPrevL2 == -1) iPrevL2 = (j > 0 ? (j - 1) : -2);
+//                        inRowL2++;
+//                        jNextL2 = (j + i < fieldSize - 1) ? (j + i + 1) : -2;
+//                        iNextL2 = (j < fieldSize - 1) ? (j + 1) : -2;
+//                    }
+//                }
 
                 // check right diag /
                 // up 1
-                if (field[j][fieldSize - 1 - j - i] == DOT_EMPTY) {
-                    fieldWeight[j][fieldSize - 1 - j - i] += 1;
-                    if (inRowR1 > 0){
-                        if (jPrevR1 >= 0 && iPrevR1 >= 0) fieldWeight[jPrevR1][iPrevR1] += inRowR1 * DOT_WEIGHT;
-                        if (jNextR1 >= 0 && iNextR1 >= 0) fieldWeight[jNextR1][iNextR1] += inRowR1 * DOT_WEIGHT;
-                        iPrevR1 = jPrevR1 = iNextR1 = jNextR1 = -1;
-                        inRowR1 = 0;
-                    }
-                }
-                if (field[j][fieldSize - 1 - j - i] == dot) {
-                    if (jPrevR1 == -1) jPrevR1 = (j > 0 ? (j - 1) : -2);
-                    if (iPrevR1 == -1) iPrevR1 = (fieldSize - 1 - j - i > 0 ? (fieldSize - 1 - j - i + 1) : -2);
-                    inRowR1++;
-                    jNextR1 = (j < fieldSize - 1) ? (j + 1) : -2;
-                    iNextR1 = (fieldSize - 1 - j - i < fieldSize - 1) ? (fieldSize - 1 - j - i - 1) : -2;
-                }
+//                if (field[j][fieldSize - 1 - j - i] == DOT_EMPTY) {
+//                    fieldWeight[j][fieldSize - 1 - j - i] += 1;
+//                    if (inRowR1 > 0){
+//                        if (jPrevR1 >= 0 && iPrevR1 >= 0) fieldWeight[jPrevR1][iPrevR1] += inRowR1 * DOT_WEIGHT;
+//                        if (jNextR1 >= 0 && iNextR1 >= 0) fieldWeight[jNextR1][iNextR1] += inRowR1 * DOT_WEIGHT;
+//                        iPrevR1 = jPrevR1 = iNextR1 = jNextR1 = -1;
+//                        inRowR1 = 0;
+//                    }
+//                }
+//                if (field[j][fieldSize - 1 - j - i] == dot) {
+//                    if (jPrevR1 == -1) jPrevR1 = (j > 0 ? (j - 1) : -2);
+//                    if (iPrevR1 == -1) iPrevR1 = (fieldSize - 1 - j - i > 0 ? (fieldSize - 1 - j - i + 1) : -2);
+//                    inRowR1++;
+//                    jNextR1 = (j < fieldSize - 1) ? (j + 1) : -2;
+//                    iNextR1 = (fieldSize - 1 - j - i < fieldSize - 1) ? (fieldSize - 1 - j - i - 1) : -2;
+//                }
 
                 //down2
                 // TODO
-                if (((j + i + 1) + (fieldSize - 1 - j) != fieldSize - 1) &&
-                        ((j + i < fieldSize - 1))) {
-                    if ((field[j + i + 1][fieldSize - 1 - j] == DOT_EMPTY)) {
-                        fieldWeight[j + i + 1][fieldSize - 1 - j] += 1;
+                //if (((j + i + 1) + (fieldSize - 1 - j) != fieldSize - 1) &&
+                        //((j + i < fieldSize - 1))) {
+                   // if ((field[j + i + 1][fieldSize - 1 - j] == DOT_EMPTY)) {
+                if (j != 0) {
+                    if ((field[j + i][fieldSize - j] == DOT_EMPTY)) {
+                        fieldWeight[j + i][fieldSize - j] += 1;
                         if (inRowR2 > 0) {
                             if (jPrevR2 >= 0 && iPrevR2 >= 0) fieldWeight[jPrevR2][iPrevR2] += inRowR2 * DOT_WEIGHT;
                             if (jNextR2 >= 0 && iNextR2 >= 0) fieldWeight[jNextR2][iNextR2] += inRowR2 * DOT_WEIGHT;
@@ -188,14 +190,17 @@ public class HomeWork4 {
                             inRowR2 = 0;
                         }
                     }
-                    if (field[j + i + 1][fieldSize - 1 - j - i] == dot) {
-                        if (jPrevR2 == -1) jPrevR2 = (j > 0 ? (j - 1) : -2);
-                        if (iPrevR2 == -1) iPrevR2 = (fieldSize - 1 - j - i > 0 ? (fieldSize - 1 - j - i + 1) : -2);
+                    if (field[j + i][fieldSize - j - i] == dot) {
+//                        if (jPrevR2 == -1) jPrevR2 = (j > 0 ? (j - 1) : -2);
+//                        if (iPrevR2 == -1) iPrevR2 = (fieldSize - 1 - j - i > 0 ? (fieldSize - 1 - j - i + 1) : -2);
+                        if (jPrevR2 == -1) jPrevR2 = (j + i > 0 ? (j + i - 1) : -2);
+                        if (iPrevR2 == -1) iPrevR2 = (fieldSize - j -i > 0 ? (fieldSize - j -i + 1) : -2);
                         inRowR2++;
-                        jNextR2 = (j + i + 1 < fieldSize - 1) ? (j + i + 1 + 1) : -2;
-                        iNextR2 = (fieldSize - 1 - j - i < fieldSize - 1) ? (fieldSize - 1 - j - i - 1) : -2;
+                        jNextR2 = (j + i < fieldSize - 1) ? (j + i + 1) : -2;
+                        iNextR2 = (fieldSize - j - i <= fieldSize - 1) ? (fieldSize - j -i - 1) : -2;
                     }
                 }
+                //}
 
                 if (j + i == fieldWeight.length - 1){
                     if (jPrevL1 >= 0 && iPrevL1 >= 0) fieldWeight[jPrevL1][iPrevL1] += inRowL1 * DOT_WEIGHT;
@@ -204,8 +209,11 @@ public class HomeWork4 {
                     if (jPrevL2 >= 0 && iPrevL2 >= 0) fieldWeight[jPrevL2][iPrevL2] += inRowL2 * DOT_WEIGHT;
                     if (jNextL2 >= 0 && iNextL2 >= 0) fieldWeight[jNextL2][iNextL2] += inRowL2 * DOT_WEIGHT;
 
-                    if (jPrevR1 == -1) jPrevR1 = (j > 0 ? (j - 1) : -2);
-                    if (iPrevR1 == -1) iPrevR1 = (fieldSize - 1 - j - i > 0 ? (fieldSize - 1 - j - i + 1) : -2);
+                    if (jPrevR1 >= 0 && iPrevR1 >= 0) fieldWeight[jPrevR1][iPrevR1] += inRowR1 * DOT_WEIGHT;
+                    if (jNextR1 >= 0 && iNextR1 >= 0) fieldWeight[jNextR1][iNextR1] += inRowR1 * DOT_WEIGHT;
+
+                    if (jPrevR2 >= 0 && iPrevR2 >= 0) fieldWeight[jPrevR2][iPrevR2] += inRowR2 * DOT_WEIGHT;
+                    if (jNextR2 >= 0 && iNextR2 >= 0) fieldWeight[jNextR2][iNextR2] += inRowR2 * DOT_WEIGHT;
                 }
 
                 j++;
