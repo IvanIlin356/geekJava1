@@ -190,14 +190,14 @@ public class HomeWork4 {
                             inRowR2 = 0;
                         }
                     }
-                    if (field[j + i][fieldSize - j - i] == dot) {
+                    if (field[j + i][fieldSize - j] == dot) {
 //                        if (jPrevR2 == -1) jPrevR2 = (j > 0 ? (j - 1) : -2);
 //                        if (iPrevR2 == -1) iPrevR2 = (fieldSize - 1 - j - i > 0 ? (fieldSize - 1 - j - i + 1) : -2);
                         if (jPrevR2 == -1) jPrevR2 = (j + i > 0 ? (j + i - 1) : -2);
-                        if (iPrevR2 == -1) iPrevR2 = (fieldSize - j -i > 0 ? (fieldSize - j -i + 1) : -2);
+                        if (iPrevR2 == -1) iPrevR2 = (fieldSize - j > 0 ? (fieldSize - j + 1) : -2);
                         inRowR2++;
                         jNextR2 = (j + i < fieldSize - 1) ? (j + i + 1) : -2;
-                        iNextR2 = (fieldSize - j - i <= fieldSize - 1) ? (fieldSize - j -i - 1) : -2;
+                        iNextR2 = (fieldSize - j < fieldSize - 1) ? (fieldSize - j - 1) : -2;
                     }
                 }
                 //}
