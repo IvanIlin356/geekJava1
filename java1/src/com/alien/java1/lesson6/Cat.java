@@ -6,12 +6,55 @@ public class Cat extends Animal {
     private static Random rnd = new Random();
     private static String[] catNames = {"Матроскин", "Мурзик", "Барсик", "Геннадий", "Рыжик"};
 
+
+    // ===== homework7 ======
+
+    protected int hungerRateMax;
+    protected int hungerRateCurrent;
+    protected boolean wantsToEat;
+
+    protected static final int HUNGER_TICK = 5;
+    protected static final float HUNGER_LIMIT = 0.5f; // % от hungerRate после которого кот голоден
+
     public Cat(){
+        // homework7 part
+        this.hungerRateMax = 50 + rnd.nextInt(50); // 50 - 100
+        this.hungerRateCurrent = 30 + rnd.nextInt(50);
+        this.wantsToEat = false;
+
+        // homework6 part
         this.name = catNames[rnd.nextInt(5)];
         this.maxJump = (rnd.nextFloat() * 2) + 1;
         this.maxRun = (rnd.nextFloat() * 100) + 150;
         this.maxSwim = 5 - (rnd.nextFloat() * 10);
     }
+
+    public void update(){
+        hungerRateCurrent -= HUNGER_TICK;
+        if (hungerRateCurrent < 0) hungerRateCurrent = 0;
+        //System.out.println(hungerRateCurrent + " " + hungerRateMax * HUNGER_LIMIT);
+
+        if (hungerRateCurrent <= hungerRateMax * HUNGER_LIMIT){
+            wantsToEat = true;
+        }
+        else {
+            wantsToEat = false;
+        }
+
+        if (wantsToEat){
+            System.out.println("Кот " + getName() + " хочет кушать и ищет миску! (" + hungerRateCurrent + "/" + hungerRateMax + ")");
+            lookForAPlate();
+        }
+        else {
+            System.out.println("Кот " + getName() + " сыт и весел! (" + hungerRateCurrent + "/" + hungerRateMax + ")");
+        }
+    }
+
+    private void lookForAPlate() {
+    }
+
+
+    // ===== homework6 =====
 
     @Override
     protected boolean jump(float value) {

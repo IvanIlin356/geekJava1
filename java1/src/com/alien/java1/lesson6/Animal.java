@@ -20,4 +20,8 @@ public class Animal {
         if (value <= maxSwim) return true;
         return false;
     }
+
+    public String getName() {
+        return name;
+    }
 }
