@@ -2,36 +2,24 @@ package com.alien.java1.lesson7;
 
 import com.alien.java1.lesson6.Cat;
 
-import java.util.Random;
-import java.util.Scanner;
-
 public class HomeWork7 {
-    private static Scanner scanner = new Scanner(System.in);
-    private static Random rnd = new Random();
-    private static final int ARRAY_SIZE = 3;
     private static final int SLEEP_TIME = 3000;
 
-
     public static void main(String[] args) {
+        System.out.println("Массив сытых котов");
         int timeCount = 1;
 
-        Cat[] cats = new Cat[ARRAY_SIZE];
+        Room room = new Room();
 
-        System.out.println("Массив сытых котов");
-        for (int i = 0; i < ARRAY_SIZE; i++) {
-            cats[i] = new Cat();
-        }
-
-        //System.out.println("введите любое слово, чтобы остановить кошачий цикл");
-        Plate plate = new Plate();
         System.out.println();
 
         while (timeCount != 0){
 
             System.out.println(" +++ Время " + timeCount + " +++ ");
-            for (Cat cat : cats) {
+            for (Cat cat : room.getCats()) {
                 cat.update();
             }
+            room.getPlate().update();
             System.out.println();
 
             try
@@ -42,15 +30,11 @@ public class HomeWork7 {
             {
                 Thread.currentThread().interrupt();
             }
-
             timeCount++;
 
-
-//            if (scanner.hasNext()){
-//                inProgr = false;
+//            if (scanner.next() != null){
+//                timeCount = 0;
 //            }
         }
-
     }
-
 }
