@@ -177,12 +177,12 @@ public class HomeWork4 {
 
                 //down2
                 // TODO
-                //if (((j + i + 1) + (fieldSize - 1 - j) != fieldSize - 1) &&
-                        //((j + i < fieldSize - 1))) {
-                   // if ((field[j + i + 1][fieldSize - 1 - j] == DOT_EMPTY)) {
-                if (j != 0) {
-                    if ((field[j + i][fieldSize - j] == DOT_EMPTY)) {
-                        fieldWeight[j + i][fieldSize - j] += 1;
+//                if (j != 0) {
+//                    if ((field[j + i][fieldSize - j] == DOT_EMPTY)) {
+                if (((j + i + 1) + (fieldSize - 1 - j) != fieldSize - 1) &&
+                        ((j + i < fieldSize - 1))) {
+                    if ((field[j + i + 1][fieldSize - 1 - j] == DOT_EMPTY)) {
+                        fieldWeight[j + i + 1][fieldSize - 1 - j] += 1;
                         if (inRowR2 > 0) {
                             if (jPrevR2 >= 0 && iPrevR2 >= 0) fieldWeight[jPrevR2][iPrevR2] += inRowR2 * DOT_WEIGHT;
                             if (jNextR2 >= 0 && iNextR2 >= 0) fieldWeight[jNextR2][iNextR2] += inRowR2 * DOT_WEIGHT;
@@ -190,14 +190,14 @@ public class HomeWork4 {
                             inRowR2 = 0;
                         }
                     }
-                    if (field[j + i][fieldSize - j] == dot) {
+                    if (field[j + i + 1][fieldSize - 1 - j] == dot) {
 //                        if (jPrevR2 == -1) jPrevR2 = (j > 0 ? (j - 1) : -2);
 //                        if (iPrevR2 == -1) iPrevR2 = (fieldSize - 1 - j - i > 0 ? (fieldSize - 1 - j - i + 1) : -2);
-                        if (jPrevR2 == -1) jPrevR2 = (j + i > 0 ? (j + i - 1) : -2);
-                        if (iPrevR2 == -1) iPrevR2 = (fieldSize - j > 0 ? (fieldSize - j + 1) : -2);
+                        if (jPrevR2 == -1) jPrevR2 = (j + i + 1 > 0 ? (j + i) : -2);
+                        if (iPrevR2 == -1) iPrevR2 = (fieldSize - 1 - j < fieldSize - 1 ? (fieldSize - 1 - j + 1) : -2);
                         inRowR2++;
                         jNextR2 = (j + i < fieldSize - 1) ? (j + i + 1) : -2;
-                        iNextR2 = (fieldSize - j < fieldSize - 1) ? (fieldSize - j - 1) : -2;
+                        //iNextR2 = (fieldSize - j <= fieldSize - 1) ? (fieldSize - j - 1) : -2;
                     }
                 }
                 //}
